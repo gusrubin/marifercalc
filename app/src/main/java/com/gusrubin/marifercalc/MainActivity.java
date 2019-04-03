@@ -8,6 +8,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import java.text.DecimalFormat;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,6 +30,26 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+    }
+
+    /** Called when the user taps the Send button */
+    public void calculaPreco(View view) {
+        // Do something in response to button
+        EditText enderecoOrigem = (EditText) findViewById(R.id.editTextOrigem);
+
+        EditText enderecoDestino = (EditText) findViewById(R.id.editTextDestino);
+
+        TextView distanciaTxt = (TextView) findViewById(R.id.textViewDistancia);
+        distanciaTxt.setText(enderecoDestino.getText());
+        Double distanciaKm = Double.parseDouble(distanciaTxt.getText().toString());
+
+        EditText valorCombustivelTxt = (EditText) findViewById(R.id.editTextDestino);
+        Double valorCombustivel = Double.parseDouble(valorCombustivelTxt.getText().toString());
+
+        Double valorTransporte = distanciaKm * valorCombustivel;
+
+        TextView valorTransporteTxt = (TextView) findViewById(R.id.textViewValor);
+        valorTransporteTxt.setText(valorTransporte.toString());
     }
 
     @Override
